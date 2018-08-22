@@ -52,7 +52,7 @@
                 }
             
                 ?>
-                <div class="flex">
+                <div class="container flex">
                     <table>
                         <tr>
                             <th>No</th>
@@ -109,39 +109,49 @@
         }
         ?>
 
-            </table>
+                </table>
+
+            
 
             <?php $conn = new mysqli("sql309.byethost.com", "b12_22578967", "knrhq3uuGJnw", "b12_22578967_attendance") or die('Error connecting to MySQL server.');
             $query = "SELECT * FROM departments";
             mysqli_query($conn, $query) or die('Error querying database.');
             $result=mysqli_query($conn,$query);
             ?>
-            <form action="eventattendance.php" method="POST">
-                <label for="loginName">
-                loginName
-                </label>
-                <input type="email" id="email" name="loginName">
+    
+                <div class="container">
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <form action="eventattendance.php" method="POST">
+                            <label for="loginName">
+                            Email
+                            </label>
+                            <input type="email" id="email" name="loginName">
 
-                <label for="department">
-                Department
-                </label>
-                
-                <select id="department" name="deptName">
-                <?php
-                while($row=mysqli_fetch_array($result)):?>
-                    <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
-                <?php endwhile; ?>
+                            <label for="department">
+                            Department
+                            </label>
 
-                </select>
-            <?php 
-                        
-                        mysqli_close($conn);
-                ?>
+                            <select id="department" name="deptName">
+                            <?php
+                            while($row=mysqli_fetch_array($result)):?>
+                            <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
+                            <?php endwhile; ?>
 
-                <input type="submit" name="submit" value="SUBMIT">
-            </form>
+                            </select>
+                            <?php 
+                                
+                                mysqli_close($conn);
+                            ?>
 
+                            <input type="submit" name="submit" value="SUBMIT">
+                        </form>
+
+                    </div> <!-- END OF COL-MD-12 -->
+                </div> <!-- END OF Row -->
+                </div>
             </div>
+            
 
             <?php include './Public/Template/footer.php';?>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

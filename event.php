@@ -18,63 +18,70 @@
 
     <body>
         <?php include './Public/Template/header.php';?>
-        
-        <?php
-        $conn = new mysqli("sql309.byethost.com", "b12_22578967", "knrhq3uuGJnw", "b12_22578967_attendance") or die('Error connecting to MySQL server.');
-        $query = "SELECT * FROM EVENTS";
-        mysqli_query($conn, $query) or die('Error querying database.');
-        $result=mysqli_query($conn,$query);
-        
-        if($result){
-        ?>    
-        <table>
-            <tr>
-            <th>No</th>
-            <th>Event Name</th>
-            <th>Event DATE TIME</th>
-            <th>Email</th>
-            <th>Options</th>
-            </tr>
 
-        <?php
-            while($row=mysqli_fetch_array($result)):?>
-            <tr>
-                <td><?php echo $row['eventID'];?></td>
-                <td><?php echo $row['eventName'];?></td>
-                <td><?php echo $row['eventDateTime'];?></td>
-                <form action="event.php" method="POST">
-                    <td><input type="email" name="email" ></td>
-                    <td><input type="submit" name="submit" value="EMAIL INVITATION"></td>
-                </form>
-            </tr>
+        <div class = "container">
+            <div class="row">
+        
+                <?php
+                $conn = new mysqli("sql309.byethost.com", "b12_22578967", "knrhq3uuGJnw", "b12_22578967_attendance") or die('Error connecting to MySQL server.');
+                $query = "SELECT * FROM EVENTS";
+                mysqli_query($conn, $query) or die('Error querying database.');
+                $result=mysqli_query($conn,$query);
         
 
-        <?php 
-            endwhile;
-            }
-  
+                if($result){
+                ?>    
+                <table>
+                    <tr>
+                    <th>No</th>
+                    <th>Event Name</th>
+                    <th>Event DATE TIME</th>
+                    <th>Email</th>
+                    <th>Options</th>
+                    </tr>
 
-           
-            if(isset($_POST['submit']))
-            {
-                echo $_POST["email"];
-                $to = $_POST["email"];
-                $subject = "INVITATION TO .....";
-                $txt = "Hello !";
-                $from = "lyc950421@gmail.com";
-                $headers = "From: $from";
-
-                mail($to,$subject,$txt,$headers);
-            }
-            else
-            {
+                <?php
+                    while($row=mysqli_fetch_array($result)):?>
+                    <tr>
+                        <td><?php echo $row['eventID'];?></td>
+                        <td><?php echo $row['eventName'];?></td>
+                        <td><?php echo $row['eventDateTime'];?></td>
+                        <form action="event.php" method="POST">
+                            <td><input type="email" name="email" ></td>
+                            <td><input type="submit" name="submit" value="EMAIL INVITATION"></td>
+                        </form>
+                    </tr>
                 
-            }
 
-            mysqli_close($conn);
-            
-        ?>
-            </table>
+                <?php 
+                    endwhile;
+                    }
+        
+
+                
+                    if(isset($_POST['submit']))
+                    {
+                        echo $_POST["email"];
+                        $to = $_POST["email"];
+                        $subject = "INVITATION TO .....";
+                        $txt = "Hello !";
+                        $from = "lyc950421@gmail.com";
+                        $headers = "From: $from";
+
+                        mail($to,$subject,$txt,$headers);
+                    }
+                    else
+                    {
+                        
+                    }
+
+                    mysqli_close($conn);
+                    
+                    ?>
+                </table>
+            </div>
+        </div>
+        
 
         <?php include './Public/Template/footer.php';?>
 

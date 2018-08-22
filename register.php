@@ -42,42 +42,61 @@
 
     <div class="container flex">
             <form action="register.php" method="POST">
+                <div class="form-group">
                     <label for="Name">
                     Name:
                     </label>
-                    <input type="text" id="Name" name="userName" required>
+                    <input type="text" id="Name" name="userName" required class="form-control">
+                </div>
 
+                <div class="form-group">
                     <label for="email">
                     Email:
                     </label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required class="form-control">
+                </div>
 
+                <div class="form-group">
                     <label for="password">
                     Password:
                     </label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
 
+                <div class="form-group">
                     <label for="Contact">
                     Contact:
                     </label>
-                    <input type="text" id="contact" name="contactNo" required>
+                    <input type="text" id="contact" name="contactNo" required class="form-control">
 
+                </div>
+
+                <div class="form-group">
                     <label for="deptID">
                     Department ID:
                     </label>
-                    <select id="department" name="deptID">
-                        <?php
-                        while($row=mysqli_fetch_array($result)):?>
-                            <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
-                        <?php endwhile; ?>
+                    <select id="department" name="deptID" class="form-control">
+                    <?php
+                    while($row=mysqli_fetch_array($result)):?>
+                        <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
+                    <?php endwhile; ?>
 
-                        </select>
+                    </select>
                     <?php 
-                                
-                                mysqli_close($conn);
-                        ?>
+                            
+                            mysqli_close($conn);
+                    ?>
 
-                    <input type="submit" name="submit" value="SUBMIT">
+                </div>
+
+                   
+                <div class="form-group">   
+                    <input type="submit" name="submit" value="SUBMIT" class="form-control">
+                </div>
+
+                   
+                   
+                    
             </form>
         </div>
         <?php include './Public/Template/footer.php';?>

@@ -1,5 +1,5 @@
 <footer class="footer">
-    <div class="container-fluid">
+    <div class="container">
     @ 2018
     </div>
 </footer>
