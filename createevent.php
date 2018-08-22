@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <title>Create Event</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./Public/CSS/style.css">
     </head>
 
-    <body>
+    <body class="pt-3 h-100">
         <?php include './Public/Template/header.php';?>
         <?php 
         
@@ -39,21 +39,30 @@
             }
         ?>
 
-        <div class="container">
+        <div class="container d-flex flex-column h-100">
             <div class="row">
-            <form action="createevent.php" method="POST">
-            <label for="eventName">
-            Event Name:
-            </label>
-            <input type="text" id="eventName" name="eventName" required>
+                <form action="createevent.php" method="POST">
+                    <div class="form-group">
+                        <label for="eventName">
+                        Event Name:
+                        </label>
+                        <input type="text" id="eventName" name="eventName" required class="form-control">
+                    </div>
 
-            <label for="eventDateTime">
-            Date Time:
-            </label>
-            <input type="datetime-local" id="eventDateTime" name="eventDateTime" required>
+                     <div class="form-group">
+                        <label for="eventDateTime">
+                        Date Time:
+                        </label>
+                        <input type="datetime-local" id="eventDateTime" name="eventDateTime" required class="form-control">
+                    </div>
 
-            <input type="submit" name="submit" value="SUBMIT">
-            </form>
+
+                <div class="form-group row">   
+                    <div class="col-sm-10">
+                    <button type="submit" name="submit" value="SUBMIT" class="btn btn-primary">SUBMIT</button>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
 

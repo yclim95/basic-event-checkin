@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <title>Event Attendace</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -18,9 +18,58 @@
         </style>
     </head>
 
-    <body>
-        <?php include './Public/Template/header.php';
-        if(!isset($_SESSION))
+    <body class="pt-3 h-100">
+        <?php include './Public/Template/header.php' ?>
+        
+
+            <?php $conn = new mysqli("sql309.byethost.com", "b12_22578967", "knrhq3uuGJnw", "b12_22578967_attendance") or die('Error connecting to MySQL server.');
+            $query = "SELECT * FROM departments";
+            mysqli_query($conn, $query) or die('Error querying database.');
+            $result=mysqli_query($conn,$query);
+            ?>
+
+                <div class="container d-flex flex-column h-100">
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <form action="eventattendance.php" method="POST">
+                           <div class="form-group">
+                                <label for="loginName">
+                                Email
+                                </label>
+                                <input type="email" id="email" name="loginName" class="form-control">
+                           </div>
+
+                            <div class="form-group">
+                                <label for="department">
+                                Department
+                                </label>
+
+                                <select id="department" name="deptName" class="form-control">
+                                <?php
+                                while($row=mysqli_fetch_array($result)):?>
+                                <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
+                                <?php endwhile; ?>
+
+                                </select>
+                                <?php 
+                                    
+                                    mysqli_close($conn);
+                                ?>
+                            </div>
+
+                            <div class="form-group row">   
+                                <div class="col-sm-10">
+                                <button type="submit" name="submit" value="SUBMIT" class="btn btn-primary">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div> <!-- END OF COL-MD-12 -->
+                </div> <!-- END OF Row -->
+                
+        
+        <?php
+                if(!isset($_SESSION))
         {
             session_start();
         }
@@ -52,103 +101,66 @@
                 }
             
                 ?>
-                <div class="container flex">
-                    <table>
-                        <tr>
-                            <th>No</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Event</th>
-                            <th>Attendance</th>
-                        </tr>
-                
-        
-                <?php
-                    $query1 = "SELECT * FROM users WHERE '" . $_POST["loginName"] . "'= email ";
-                    $result1=mysqli_query($conn,$query);
-                    while($row=mysqli_fetch_array($result1)):?>
-                        <tr>
-                            <td><?php echo $row['loginID'];?></td>
-                            <td><?php echo $row['loginName'];?></td>
-                            <td><?php echo $row['deptID'];?></td>
-                            <td><?php echo $row['eventID'];?></td>
-                            <td><?php echo $row['loginDateTime'];?></td>
-                        </tr>
-
-               
-                    <?php 
-                        endwhile;
-
-                    }
-
-                    else
-                    {
-                        $query2 = "INSERT INTO logindetails(loginName) VALUES ('" . $_POST["loginName"] . "')";
-                        $last_id = 1;
-                        function emailAddNotify($email)
-                        {
-                            echo 
-                                "<script language='javascript'>
-                                alert('New user email address : $email');
-                                </script>";
-                        }
-                        if ($conn->query($query2) === TRUE) {
-                                $last_id = $conn->insert_id;
-
-                                emailAddNotify($_POST["loginName"]);
-                                
-                                //echo "New record created successfully. Last inserted ID is: " . $last_id;
-                        } else {
-                                    echo "Error: " . $sql . "<br>" . $conn->error;
-
-                                }
-
-                    }
-        
-                mysqli_close($conn);
-        }
-        ?>
-
-                </table>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Event</th>
+                                    <th>Attendance</th>
+                                </tr>
+                    
             
+                                    <?php
+                                        $query1 = "SELECT * FROM users WHERE '" . $_POST["loginName"] . "'= email ";
+                                        $result1=mysqli_query($conn,$query);
+                                        while($row=mysqli_fetch_array($result1)):?>
+                                            <tr>
+                                                <td><?php echo $row['loginID'];?></td>
+                                                <td><?php echo $row['loginName'];?></td>
+                                                <td><?php echo $row['deptID'];?></td>
+                                                <td><?php echo $row['eventID'];?></td>
+                                                <td><?php echo $row['loginDateTime'];?></td>
+                                            </tr>
 
-            <?php $conn = new mysqli("sql309.byethost.com", "b12_22578967", "knrhq3uuGJnw", "b12_22578967_attendance") or die('Error connecting to MySQL server.');
-            $query = "SELECT * FROM departments";
-            mysqli_query($conn, $query) or die('Error querying database.');
-            $result=mysqli_query($conn,$query);
-            ?>
-    
-                <div class="container">
-                <div class = "row">
-                    <div class = "col-md-12">
-                        <form action="eventattendance.php" method="POST">
-                            <label for="loginName">
-                            Email
-                            </label>
-                            <input type="email" id="email" name="loginName">
-
-                            <label for="department">
-                            Department
-                            </label>
-
-                            <select id="department" name="deptName">
-                            <?php
-                            while($row=mysqli_fetch_array($result)):?>
-                            <option value="<?php echo $row['deptID'];?>"><?php echo $row['deptName'];?></option>
-                            <?php endwhile; ?>
-
-                            </select>
-                            <?php 
                                 
-                                mysqli_close($conn);
+                                        <?php 
+                                            endwhile;
+
+                                        }
+
+                                        else
+                                        {
+                                            $query2 = "INSERT INTO logindetails(loginName) VALUES ('" . $_POST["loginName"] . "')";
+                                            $last_id = 1;
+                                            function emailAddNotify($email)
+                                            {
+                                                echo 
+                                                    "<script language='javascript'>
+                                                    alert('New user email address : $email');
+                                                    </script>";
+                                            }
+                                            if ($conn->query($query2) === TRUE) {
+                                                    $last_id = $conn->insert_id;
+
+                                                    emailAddNotify($_POST["loginName"]);
+                                                    
+                                                    //echo "New record created successfully. Last inserted ID is: " . $last_id;
+                                            } else {
+                                                        echo "Error: " . $sql . "<br>" . $conn->error;
+
+                                                    }
+
+                                        }
+                            
+                                    mysqli_close($conn);
+                            }
                             ?>
 
-                            <input type="submit" name="submit" value="SUBMIT">
-                        </form>
-
-                    </div> <!-- END OF COL-MD-12 -->
-                </div> <!-- END OF Row -->
+                        </table>
+                    </div>
                 </div>
             </div>
             

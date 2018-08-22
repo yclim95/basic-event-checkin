@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./Public/CSS/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <title>Register</title>
     </head>
 
-    <body>
+    <body class="pt-3 h-100">
     <?php include './Public/Template/header.php';
      if(!isset($_SESSION))
      {
@@ -40,7 +42,7 @@
             $result=mysqli_query($conn,$query);
             ?>
 
-    <div class="container">
+    <main role="main" class="container d-flex flex-column h-100">
             <form action="register.php" method="POST">
                 <div class="form-group">
                     <label for="Name">
@@ -101,7 +103,7 @@
                     
             </form>
             
-        </div>
+        </main>
 
         <?php include './Public/Template/footer.php';?>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

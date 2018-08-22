@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <title>Event</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,10 +16,10 @@
         </style>
     </head>
 
-    <body>
+    <body class="pt-3 h-100">
         <?php include './Public/Template/header.php';?>
 
-        <div class = "container">
+        <div class = "container d-flex flex-column h-100">
             <div class="row">
         
                 <?php
@@ -31,7 +31,7 @@
 
                 if($result){
                 ?>    
-                <table>
+                <table class="table table-striped">
                     <tr>
                     <th>No</th>
                     <th>Event Name</th>
