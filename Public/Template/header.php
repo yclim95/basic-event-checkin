@@ -9,10 +9,10 @@
         <div class="collapse navbar-collapse container" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="./mainpage.php">HomePage<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./mainpage.php" >HomePage<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./createevent.php">Create Event</a>
+                    <a class="nav-link" href="./createevent.php" >Create Event</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./event.php">Event List</a>
@@ -21,7 +21,7 @@
                     <a class="nav-link" href="./eventattendance.php">Event Attendance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./register.php">Register</a>
+                    <a class="nav-link" href="./register.php" >Register</a>
                 </li>
             </ul>
         </div>
